@@ -249,35 +249,36 @@ for (let i = 0; i < dropdownArray.length; i++) {
 
 function FoldDropdownText(event) {
   var header = event.currentTarget.parentElement;
-    var body = header.parentElement.querySelector(".dropdown-body");
+  var body = header.parentElement.querySelector(".dropdown-body");
 
-    if (header !== null && body !== null) {
-        var spn = header.querySelector("span");
-        if (spn !== null) {
-            if (spn.innerHTML == "-")
-                spn.innerHTML = "+";
-            else
-                spn.innerHTML = "-";
-        }
-        if(body.classList.contains("folded-body")){
-          body.classList.remove("folded-body");
-          body.querySelector(".editable-text").contentEditable = true;
-        }
-        else if(body.classList.contains("folded-body-small")){
-          body.classList.remove("folded-body-small");
-          body.querySelector(".editable-text").contentEditable = true;
+  if (header !== null && body !== null) {
+      var spn = header.querySelector("span");
+      if (spn !== null) {
+          if (spn.innerHTML == "-")
+              spn.innerHTML = "+";
+          else
+              spn.innerHTML = "-";
+      }
+      if(body.classList.contains("folded-body")){
+        body.classList.remove("folded-body");
+        body.querySelector(".editable-text").contentEditable = true;
+      }
+      else if(body.classList.contains("folded-body-small")){
+        body.classList.remove("folded-body-small");
+        body.querySelector(".editable-text").contentEditable = true;
+      }
+      else{
+        body.querySelector(".editable-text").contentEditable = false;
+        if(body.querySelector("ul").getElementsByTagName("li").length > 0){
+          body.classList.add("folded-body");
         }
         else{
-          body.querySelector(".editable-text").contentEditable = false;
-          if(body.querySelector("ul").getElementsByTagName("li").length > 0){
-            body.classList.add("folded-body");
-          }
-          else{
-            body.classList.add("folded-body-small");
-          }
+          body.classList.add("folded-body-small");
         }
-    }
-    event.preventDefault();
+      }
+  }
+
+  event.preventDefault();
 }
 
 function AddBubleCheck(event){
@@ -389,14 +390,14 @@ document.getElementById("abilities").querySelector('input[value="+"]').addEventL
     spn.addEventListener("mouseup", function(e) { if(e.button == 0){FoldDropdownText(e)} });
 
     addCheck.addEventListener("touchstart", AddBubleCheck);
-    addCheck.addEventListener("mouseup", AddBubleCheck);
+    addCheck.addEventListener("mouseup", function(e) { if(e.button == 0){AddBubleCheck(e)} });
 
     removeCheck.addEventListener("touchstart", RemoveBubleCheck);
-    removeCheck.addEventListener("mouseup", RemoveBubleCheck);
+    removeCheck.addEventListener("mouseup", function(e) { if(e.button == 0){RemoveBubleCheck(e)} });
 
     abilityDesc.addEventListener("focus", function (e) {e.currentTarget.spellcheck = true;});
     abilityDesc.addEventListener("blur", function (e) {e.currentTarget.spellcheck = false;});
 
     removeDropdown.addEventListener("touchstart", function(e) {e.currentTarget.parentElement.parentElement.remove(); e.preventDefault();});
-    removeDropdown.addEventListener("mouseup", function(e) {e.currentTarget.parentElement.parentElement.remove(); e.preventDefault();});
+    removeDropdown.addEventListener("mouseup", function(e) { if(e.button == 0){ e.currentTarget.parentElement.parentElement.remove(); e.preventDefault();} });
   });
