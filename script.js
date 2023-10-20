@@ -223,7 +223,7 @@ for (let i = 0; i < dropdownArray.length; i++) {
 
   //add folding logic
   header.querySelector("span").addEventListener("touchstart", FoldDropdownText);
-  header.querySelector("span").addEventListener("click", function(e) {
+  header.querySelector("span").addEventListener("mouseup", function(e) {
       if(e.button == 0)
           FoldDropdownText(e);
   });
@@ -381,17 +381,17 @@ document.getElementById("abilities").querySelector('input[value="+"]').addEventL
     e.currentTarget.parentElement.appendChild(wrapper);
 
     spn.addEventListener("touchstart", FoldDropdownText);
-    spn.addEventListener("click", function(e) { if(e.button == 0){FoldDropdownText(e)} });
+    spn.addEventListener("mouseup", function(e) { if(e.button == 0){FoldDropdownText(e)} });
 
     addCheck.addEventListener("touchstart", AddBubleCheck);
-    addCheck.addEventListener("click", AddBubleCheck);
+    addCheck.addEventListener("mouseup", AddBubleCheck);
 
     removeCheck.addEventListener("touchstart", RemoveBubleCheck);
-    removeCheck.addEventListener("click", RemoveBubleCheck);
+    removeCheck.addEventListener("mouseup", RemoveBubleCheck);
 
     abilityDesc.addEventListener("focus", function (e) {e.currentTarget.spellcheck = true;});
     abilityDesc.addEventListener("blur", function (e) {e.currentTarget.spellcheck = false;});
 
     removeDropdown.addEventListener("touchstart", function(e) {e.currentTarget.parentElement.parentElement.remove()});
-    removeDropdown.addEventListener("click", function(e) {e.currentTarget.parentElement.parentElement.remove()});
+    removeDropdown.addEventListener("mouseup", function(e) {e.currentTarget.parentElement.parentElement.remove()});
   });
