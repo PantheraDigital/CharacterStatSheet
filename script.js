@@ -277,6 +277,7 @@ function FoldDropdownText(event) {
           }
         }
     }
+    event.preventDefault();
 }
 
 function AddBubleCheck(event){
@@ -299,6 +300,8 @@ function AddBubleCheck(event){
     body.classList.remove("folded-body-small");
     body.classList.add("folded-body");
   }
+
+  event.preventDefault();
 }
 
 function RemoveBubleCheck(event){
@@ -313,6 +316,8 @@ function RemoveBubleCheck(event){
       body.classList.remove("folded-body");
     }
   }
+
+  event.preventDefault();
 }
 
 
@@ -392,6 +397,6 @@ document.getElementById("abilities").querySelector('input[value="+"]').addEventL
     abilityDesc.addEventListener("focus", function (e) {e.currentTarget.spellcheck = true;});
     abilityDesc.addEventListener("blur", function (e) {e.currentTarget.spellcheck = false;});
 
-    removeDropdown.addEventListener("touchstart", function(e) {e.currentTarget.parentElement.parentElement.remove()});
-    removeDropdown.addEventListener("mouseup", function(e) {e.currentTarget.parentElement.parentElement.remove()});
+    removeDropdown.addEventListener("touchstart", function(e) {e.currentTarget.parentElement.parentElement.remove(); e.preventDefault();});
+    removeDropdown.addEventListener("mouseup", function(e) {e.currentTarget.parentElement.parentElement.remove(); e.preventDefault();});
   });
